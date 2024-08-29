@@ -1,0 +1,51 @@
+// .background-container {
+//   background-image: url("../../../../assets/youthIftar.jpeg"); /* Adjust the path based on your project structure */
+//   background-size: contain;
+//   background-position: center;
+//   background-repeat: no-repeat;
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: center;
+//   align-items: center;
+// }
+
+// @media  (max-width: 500px) {
+//   .background-container {
+//     background-size: 100vw 100vh;
+//     height: 100vh;
+
+//   }
+//   .box {
+//     margin-top: 720px;
+//   }
+// }
+
+// @media (min-width: 500px) and (max-width: 600px) {
+//   .background-container {
+//     background-size: 100vw 100vh;
+//     height: 100vh;
+
+//   }
+//   .box {
+//     margin-top: 554px;
+//   }
+// }
+
+// @media (min-width: 600px) and (max-width: 900px) {
+//   .background-container {
+//     overflow: hidden;
+//     height: 100vh;
+//   }
+//   .box {
+//     margin-top: 300px;
+//   }
+// }
+
+// @media (min-width: 900px) {
+//   .background-container {
+//     height: 100vh;
+//   }
+//   .box {
+//     margin-top: 554px;
+//   }
+// }
