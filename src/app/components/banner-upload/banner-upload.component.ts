@@ -1,19 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { BannerService } from '../../services/banner.service';
 import { AuthModalComponent } from '../auth-modal/auth-modal.component';
 import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'banner-upload',
   templateUrl: './banner-upload.component.html',
   styleUrl: './banner-upload.component.scss',
   standalone: true,
-  imports: [AuthModalComponent, CommonModule],
+  imports: [AuthModalComponent, CommonModule, MatButtonModule],
 })
 export class BannerUploadComponent {
   selectedFile: File | null = null;
   uploadProgress: number = 0;
   uploadMessage: string = '';
-
+  @ViewChild('fileInput') fileInput!: ElementRef;
   constructor(private bannerService: BannerService) {}
 
   onFileSelected(event: any): void {
@@ -34,8 +35,7 @@ export class BannerUploadComponent {
       this.uploadMessage = 'No file selected!';
     }
   }
-  visible: boolean = false;
-  showDialog() {
-    this.visible = true;
+  selectFile() {
+    this.fileInput.nativeElement.click();
   }
 }
