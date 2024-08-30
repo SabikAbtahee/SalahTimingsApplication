@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { LayoutComponent } from '../components/layout/layout.component';
 import { BannerUploadComponent } from '../components/banner-upload/banner-upload.component';
+import { SettingsComponent } from '../components/settings/settings.component';
 
 export const routes: Routes = [
   {
@@ -13,7 +14,7 @@ export const routes: Routes = [
     component: LayoutComponent,
   },
   {
-    path: 'upload',
-    component: BannerUploadComponent,
+    path: 'settings',
+    component: SettingsComponent,
   },
 ];

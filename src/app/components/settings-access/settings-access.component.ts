@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
-import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'settings-access',
   standalone: true,
-  imports: [ButtonModule],
+  imports: [MatIconModule],
   templateUrl: './settings-access.component.html',
 })
 export class SettingsAccessComponent {
-    constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
-    routeToSettings() {
-        this.router.navigate(['/upload']);
+  routeToSettings() {
+    this.router.navigate(['/settings']);
   }
 }

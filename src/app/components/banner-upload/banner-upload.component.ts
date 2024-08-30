@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
 import { BannerService } from '../../services/banner.service';
-import { DialogModule } from 'primeng/dialog';
-import { ButtonModule } from 'primeng/button';
-import { AuthModalComponent } from "../auth-modal/auth-modal.component";
+import { AuthModalComponent } from '../auth-modal/auth-modal.component';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'banner-upload',
   templateUrl: './banner-upload.component.html',
   styleUrl: './banner-upload.component.scss',
   standalone: true,
-  imports: [DialogModule, ButtonModule, AuthModalComponent],
+  imports: [AuthModalComponent, CommonModule],
 })
 export class BannerUploadComponent {
   selectedFile: File | null = null;

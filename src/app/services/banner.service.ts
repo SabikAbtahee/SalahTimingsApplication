@@ -18,14 +18,11 @@ export class BannerService {
 
   uploadFile(file: File): Observable<any> {
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append('images', file);
 
     return this.httpClient.post<any>(
       environment.SalahTimesService + '/banner/upload',
-      formData,
-      {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      }
+      formData
     );
   }
 }
