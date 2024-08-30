@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BannersResponse } from '../shared/app.interfaces';
 import { environment } from '@env';
 import { Observable } from 'rxjs';
+import { IBannersResponse } from '../interfaces/IBannersResponse.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -10,10 +10,10 @@ import { Observable } from 'rxjs';
 export class BannerService {
   constructor(private httpClient: HttpClient) {}
 
-  getBanners(): Observable<BannersResponse> {
+  getBanners(): Observable<IBannersResponse> {
     return this.httpClient.get(
       environment.SalahTimesService + '/banner'
-    ) as Observable<BannersResponse>;
+    ) as Observable<IBannersResponse>;
   }
 
   uploadFile(file: File): Observable<any> {

@@ -1,0 +1,17 @@
+<div class="flex flex-col gap-4 w-full items-center justify-center">
+  <div class="flex flex-row justify-evenly w-full items-center">
+    @if(changeScene){ @for (item of salahTimings; track $index) {
+    <div>
+      <timer-card [text]="item.key" [time]="item.value" />
+    </div>
+    } }
+  </div>
+
+  <div class="flex flex-row justify-evenly w-full items-center">
+    @if(!changeScene){ @for (item of jummahTimings; track $index) {
+    <div>
+      <timer-card [text]="item.key" [time]="item.value" />
+    </div>
+    } }
+  </div>
+</div>

@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env';
-import { IPrayerTimings } from '../shared/app.interfaces';
 import { Observable } from 'rxjs';
 import * as SunCalc from 'suncalc';
 
 import { toHijri, toGregorian } from 'hijri-converter';
-import { IslamicMonths } from '../shared/app.const';
 import { DatePipe } from '@angular/common';
+import { IPrayerTimings } from '../interfaces/IPrayerTimings.interface';
+import { IslamicMonths } from '../constants/IslamicMonthTexts.const';
 @Injectable({
   providedIn: 'root',
 })
