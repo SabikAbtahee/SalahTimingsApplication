@@ -27,14 +27,16 @@
                         "inlineStyleLanguage": "scss",
                         "assets": [
                             "src/assets",
+                            "src/fonts",
+                            "src/web.config",
                             {
                                 "glob": "**/*",
                                 "input": "public"
                             }
                         ],
                         "styles": [
-                          "@angular/material/prebuilt-themes/azure-blue.css",
-                          "src/styles.scss"
+                            "@angular/material/prebuilt-themes/azure-blue.css",
+                            "src/styles.scss"
                         ],
                         "scripts": []
                     },
@@ -88,14 +90,16 @@
                         "inlineStyleLanguage": "scss",
                         "assets": [
                             "src/assets",
+                            "src/fonts",
+                            "src/web.config",
                             {
                                 "glob": "**/*",
                                 "input": "public"
                             }
                         ],
                         "styles": [
-                          "@angular/material/prebuilt-themes/azure-blue.css",
-                          "src/styles.scss"
+                            "@angular/material/prebuilt-themes/azure-blue.css",
+                            "src/styles.scss"
                         ],
                         "scripts": []
                     }
