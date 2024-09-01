@@ -1,0 +1,12 @@
+.item-container {
+    position: relative;
+    padding: 10px;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+  }
+  
+  .delete-icon {
+    margin-left: auto;
+    cursor: pointer;
+  }

@@ -1,0 +1,20 @@
+<div class="flex flex-row gap-5 p-12">
+  <div *ngFor="let item of bannerList?.banners; trackBy: trackByName">
+    <div class="justify-center mat-elevation-z1 cursor-pointer item-container">
+      <button
+        mat-icon-button
+        class="delete-icon"
+        (click)="deleteItem(item.name)"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+      <img
+        class="w-40 h-40 object-contain"
+        [src]="item.url"
+        width="200"
+        height="200"
+        priority
+      />
+    </div>
+  </div>
+</div>

@@ -26,6 +26,7 @@ export class BannerUploadComponent {
       this.bannerService.uploadFile(this.selectedFile).subscribe({
         next: (event) => {
           this.uploadMessage = 'File uploaded successfully!';
+          this.bannerService.fileUploaded.next(true);
         },
         error: (error) => {
           this.uploadMessage = 'Error uploading file.';
