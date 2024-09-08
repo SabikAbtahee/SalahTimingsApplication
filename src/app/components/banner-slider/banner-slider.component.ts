@@ -34,6 +34,6 @@ export class BannerSliderComponent {
         this.currentAnnouncementImagePath = values[this.currentIndex].url;
         this.currentIndex = (this.currentIndex + 1) % values.length;
       }
-    }, 5000);
+    }, 20000);
   }
 }
