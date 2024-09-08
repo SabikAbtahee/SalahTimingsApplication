@@ -2,16 +2,18 @@ import { Component } from '@angular/core';
 import { first } from 'rxjs';
 import { BannerService } from '../../services/banner.service';
 import { IBannersResponse } from '../../interfaces/IBannersResponse.interface';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'banner-slider',
   templateUrl: './banner-slider.component.html',
   styleUrl: './banner-slider.component.scss',
+  imports: [NgOptimizedImage,CommonModule],
   standalone: true,
 })
 export class BannerSliderComponent {
   banners: IBannersResponse;
-  currentAnnouncementImagePath: string;
+  currentAnnouncementImagePath: string = "";
   currentIndex: number = 0;
   constructor(private bannerService: BannerService) {}
   ngOnInit() {

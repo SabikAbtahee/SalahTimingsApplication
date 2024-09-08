@@ -25,20 +25,16 @@ export class CalendarService {
       .sort((a, b) => a.getTime() - b.getTime());
 
     const futureDates = allDates
-      .filter((date) => date > currentDate)
+        .filter((date) => date > currentDate)
+        .slice(0,7)
       .map((date) => date.toISOString().split('T')[0]);
 
-    const pastDates = allDates
-      .filter((date) => date <= currentDate)
-      .slice(-2)
-          .map((date) => date.toISOString().split('T')[0]);
-      
-    const selectedDates = [...pastDates, ...futureDates];
+    const selectedDates = [...futureDates];
 
     const filteredPayload: ICalendarEventsResponse = selectedDates.reduce(
       (acc, date) => {
         if (payload[date]) {
-          acc[date] = payload[date]; 
+          acc[date] = payload[date];
         }
         return acc;
       },
