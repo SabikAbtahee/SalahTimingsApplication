@@ -20,14 +20,12 @@ export class CalendarService {
     payload: ICalendarEventsResponse
   ): ICalendarEventsResponse {
     const currentDate = new Date();
-    const allDates = Object.keys(payload)
-      .map((date) => new Date(date))
-      .sort((a, b) => a.getTime() - b.getTime());
+    const allDates =
+      Object.keys(payload)
+      .sort();
 
-    const futureDates = allDates
-        .filter((date) => date > currentDate)
-        .slice(0,7)
-      .map((date) => date.toISOString().split('T')[0]);
+    const futureDates = allDates.slice(0,8)
+    //   .map((date) => new Date(date).toLocaleDateString('en-US',{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }));
 
     const selectedDates = [...futureDates];
 

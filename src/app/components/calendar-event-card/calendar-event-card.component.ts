@@ -10,6 +10,7 @@ import { DatePipe } from '@angular/common';
   styleUrl: './calendar-event-card.component.scss',
 })
 export class CalendarEventCardComponent {
-    @Input({ required: true }) calendarEvents: ICalendarEvent[];
-    @Input({ required: true }) date: string;
+  @Input({ required: true }) calendarEvents: ICalendarEvent[];
+  @Input({ required: true }) date: string;
+
 }
