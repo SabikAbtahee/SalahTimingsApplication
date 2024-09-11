@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ICalendarEventsResponse } from '../interfaces/ICalendarEventsResponse.interface';
+import { ICalendarEventGroups } from '../interfaces/ICalendarEventsResponse.interface';
 import { Observable } from 'rxjs';
 import { environment } from '@env';
+import { ICalendarEvent } from '../interfaces/ICalendarEvent.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -10,35 +11,21 @@ import { environment } from '@env';
 export class CalendarService {
   constructor(private httpClient: HttpClient) {}
 
-  getCalendarEvents(): Observable<ICalendarEventsResponse> {
+  getCalendarEvents(): Observable<ICalendarEvent[]> {
     return this.httpClient.get(
       environment.SalahTimesService + '/calendar/events'
-    ) as Observable<ICalendarEventsResponse>;
+    ) as Observable<ICalendarEvent[]>;
   }
 
-  getCurrentWeekCalendarEvents(
-    payload: ICalendarEventsResponse
-  ): ICalendarEventsResponse {
-    const currentDate = new Date();
-    const allDates =
-      Object.keys(payload)
-      .sort();
-
-    const futureDates = allDates.slice(0,8)
-    //   .map((date) => new Date(date).toLocaleDateString('en-US',{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }));
-
-    const selectedDates = [...futureDates];
-
-    const filteredPayload: ICalendarEventsResponse = selectedDates.reduce(
-      (acc, date) => {
-        if (payload[date]) {
-          acc[date] = payload[date];
-        }
-        return acc;
-      },
-      {} as ICalendarEventsResponse
-    );
-
-    return filteredPayload;
+  groupEventsByDate(events) {
+    return events.reduce((groupedEvents, event) => {
+      const date = new Date(event.startDate);
+      const eventDate = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
+      if (!groupedEvents[eventDate]) {
+        groupedEvents[eventDate] = [];
+      }
+      groupedEvents[eventDate].push(event);
+      return groupedEvents;
+    }, {});
   }
 }

@@ -1,5 +1,5 @@
 import { ICalendarEvent } from './ICalendarEvent.interface';
 
-export interface ICalendarEventsResponse {
+export interface ICalendarEventGroups {
   [date: string]: ICalendarEvent[];
 }

@@ -1,5 +1,6 @@
 export interface ICalendarEvent {
   summary: string;
-  start: string; // ISO 8601 format
-  end: string; // ISO 8601 format
+  isRecurring: boolean;
+  startDate: string; // ISO 8601 format
+  endDate: string; // ISO 8601 format
 }
