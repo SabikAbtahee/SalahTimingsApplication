@@ -1,9 +1,13 @@
 <div
-  class="flex justify-center font-bold text-2xl max-lg:text-xl max-md:text-base max-sm:text-xs gap-2 text-color-gray mt-1 symphony"
+  class="flex justify-center items-center font-bold text-2xl max-lg:text-xl max-md:text-base max-sm:text-xs gap-2 text-color-gray mt-1 symphony"
 >
+  @if(clock && englishDate && hizriDate){
   <span>{{ clock | async | date : "hh:mm:ss a" }}</span>
   |
   <span> {{ englishDate }} </span>
   |
   <span>{{ hizriDate }}</span>
+  } @else {
+  <ngx-skeleton-loader [theme]="{ height: '32px', width: '250px' }" />
+  }
 </div>

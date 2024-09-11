@@ -1,11 +1,14 @@
 <div class="flex justify-center custom-height">
-  <ng-container *ngIf="currentAnnouncementImagePath">
-    <img
-      class="w-full object-contain"
-      [ngSrc]="currentAnnouncementImagePath"
-      width="1598"
-      height="649"
-      priority
-    />
-  </ng-container>
+  @if(!currentAnnouncementImagePath){
+  <div class="flex justify-center items-center custom-height">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  }@else {
+  <img
+    [ngClass]="{ 'skeleton-loader': !currentAnnouncementImagePath }"
+    class="w-full object-contain"
+    [src]="currentAnnouncementImagePath"
+  />
+  }
 </div>

@@ -4,12 +4,14 @@ import { TimingsService } from '../../services/timings.service';
 import { first } from 'rxjs';
 import { TimerCardComponent } from '../timer-card/timer-card.component';
 import { IPrayerTimings } from '../../interfaces/IPrayerTimings.interface';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { ChangeSalahInterval } from '../../constants/app.const';
 @Component({
   selector: 'salah-timings',
   templateUrl: './salah-timings.component.html',
   animations: fuseAnimations,
   standalone: true,
-  imports: [TimerCardComponent],
+  imports: [TimerCardComponent, NgxSkeletonLoaderModule],
   styleUrl: './salah-timings.component.scss',
 })
 export class SalahTimingsComponent {
@@ -42,7 +44,7 @@ export class SalahTimingsComponent {
   changeScenes() {
     setInterval(() => {
       this.changeScene = !this.changeScene;
-    }, 3000);
+    }, ChangeSalahInterval);
   }
 
   refreshSalahTime() {

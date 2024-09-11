@@ -2,12 +2,16 @@ import { Component } from '@angular/core';
 import { map, Observable, tap, timer } from 'rxjs';
 import { TimingsService } from '../../services/timings.service';
 import { CommonModule, DatePipe } from '@angular/common';
+import {
+  NgxSkeletonLoaderComponent,
+  NgxSkeletonLoaderModule,
+} from 'ngx-skeleton-loader';
 
 @Component({
   selector: 'hizri-date',
   templateUrl: './hizri-date.component.html',
   standalone: true,
-  imports: [CommonModule, DatePipe],
+  imports: [CommonModule, DatePipe, NgxSkeletonLoaderModule],
 })
 export class HizriDateComponent {
   clock!: Observable<Date>;

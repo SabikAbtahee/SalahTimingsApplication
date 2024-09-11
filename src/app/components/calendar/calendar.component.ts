@@ -4,11 +4,12 @@ import { ICalendarEventGroups } from '../../interfaces/ICalendarEventsResponse.i
 import { map, Observable, tap } from 'rxjs';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { CalendarEventCardComponent } from '../calendar-event-card/calendar-event-card.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'calendar',
   standalone: true,
-  imports: [CommonModule, CalendarEventCardComponent],
+  imports: [CommonModule, CalendarEventCardComponent, MatProgressSpinnerModule],
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.scss',
 })

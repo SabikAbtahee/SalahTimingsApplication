@@ -1,22 +1,33 @@
-import { Component } from '@angular/core';
-import { BannerService } from '../../services/banner.service';
-import { IBannersResponse } from '../../interfaces/IBannersResponse.interface';
-import { first, Observable, startWith } from 'rxjs';
 import { AsyncPipe, CommonModule } from '@angular/common';
-import { MatIconModule } from '@angular/material/icon';
+import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { filter, first, Subject, takeUntil } from 'rxjs';
+import { IBannersResponse } from '../../interfaces/IBannersResponse.interface';
+import { BannerService } from '../../services/banner.service';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @Component({
   selector: 'banner-list',
   standalone: true,
-  imports: [CommonModule, AsyncPipe, MatIconModule, MatButtonModule],
+  imports: [
+    CommonModule,
+    AsyncPipe,
+    MatIconModule,
+    MatButtonModule,
+    MatTooltipModule,
+    MatProgressBarModule,
+  ],
   templateUrl: './banner-list.component.html',
   styleUrl: './banner-list.component.scss',
 })
 export class BannerListComponent {
   bannerList: IBannersResponse;
-
-  constructor(private bannerService: BannerService) {}
+  _unsubscribeAll: Subject<void>;
+  constructor(private bannerService: BannerService) {
+    this._unsubscribeAll = new Subject();
+  }
 
   ngOnInit() {
     this.loadBanners();
@@ -36,9 +47,14 @@ export class BannerListComponent {
   }
 
   private checkUpload() {
-    this.bannerService.fileUploaded.subscribe((res) => {
-      this.loadBanners();
-    });
+    this.bannerService.fileUploaded
+      .pipe(
+        takeUntil(this._unsubscribeAll),
+        filter((res) => res != false)
+      )
+      .subscribe((res) => {
+        this.loadBanners();
+      });
   }
   deleteItem(event) {
     this.bannerService
@@ -47,5 +63,11 @@ export class BannerListComponent {
       .subscribe((res) => {
         this.loadBanners();
       });
+  }
+
+  ngOnDestroy() {
+    this._unsubscribeAll.next();
+    this._unsubscribeAll.unsubscribe();
+    this._unsubscribeAll.complete();
   }
 }

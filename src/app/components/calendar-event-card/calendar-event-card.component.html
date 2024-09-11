@@ -1,12 +1,13 @@
-<div class="text-lg max-sm:text-xs font-bold border-b-2 pb-1 border-cyan-500 ">
+<div class="text-lg max-sm:text-xs font-bold border-b-2 pb-1 border-cyan-500">
   {{ date | date : "EEEE, LLLL d, y" }}
 </div>
 <div class="mt-1">
   @for(item of calendarEvents ; track $index){
   <div
+    
     class="flex font-bold text-lg max-sm:text-xs gap-2 text-color-gray mt-1 symphony"
   >
-    <div class="text-gray-400">{{ item.startDate | date : "h:mm a" }}</div>
+    <div class="text-red-600">{{ item.startDate | date : "h:mm a" }}</div>
     <div>{{ item.summary }}</div>
   </div>
   }

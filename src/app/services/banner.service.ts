@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '@env';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { IBannersResponse } from '../interfaces/IBannersResponse.interface';
+import { BannerKey } from '../constants/app.const';
 
 @Injectable({
   providedIn: 'root',
@@ -42,5 +43,14 @@ export class BannerService {
           this.isLoading.next(false);
         })
       );
+  }
+
+  saveBannersToLocalStorage(banners: IBannersResponse) {
+    localStorage.setItem(BannerKey, JSON.stringify(banners));
+  }
+
+  getBannersFromLocalStorage(): IBannersResponse {
+    const storedValue = localStorage.getItem(BannerKey);
+    return storedValue ? JSON.parse(storedValue) : [];
   }
 }

@@ -11,5 +11,18 @@
     <button mat-raised-button (click)="uploadFile()" [disabled]="!selectedFile">
       Upload
     </button>
+    <div *ngIf="selectedFile">
+      <div class="flex flex-col items-center justify-center">
+        <span
+          matTooltip="Click Upload to upload selected file"
+          class="material-symbols-outlined cursor-pointer text-green-400"
+        >
+          arrow_back
+        </span>
+      </div>
+    </div>
   </div>
 </div>
+@if(isUploading){
+<mat-progress-bar mode="indeterminate"></mat-progress-bar>
+}

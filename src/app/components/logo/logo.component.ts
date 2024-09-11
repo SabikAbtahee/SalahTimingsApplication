@@ -1,9 +1,10 @@
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'logo',
   standalone: true,
-  imports: [],
+  imports: [NgOptimizedImage,CommonModule],
   templateUrl: './logo.component.html',
 })
 export class LogoComponent {
@@ -14,6 +15,6 @@ export class LogoComponent {
   }
 
   setLogo() {
-    this.logo = 'assets/Logo.jpg';
+    this.logo = 'assets/IALFM_QR_Code.jpg';
   }
 }
