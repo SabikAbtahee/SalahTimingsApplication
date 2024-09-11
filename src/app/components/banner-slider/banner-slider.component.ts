@@ -47,7 +47,7 @@ export class BannerSliderComponent {
   }
 
   viewBanners() {
-    if (this.banners?.banners.length > 0) {
+    if (this.banners?.banners?.length > 0) {
       const values = this.banners?.banners;
       this.currentAnnouncementImagePath = values[this.currentIndex].url;
       this.currentIndex = (this.currentIndex + 1) % values.length;
