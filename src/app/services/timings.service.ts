@@ -8,6 +8,12 @@ import { toHijri, toGregorian } from 'hijri-converter';
 import { DatePipe } from '@angular/common';
 import { IPrayerTimings } from '../interfaces/IPrayerTimings.interface';
 import { IslamicMonths } from '../constants/IslamicMonthTexts.const';
+import {
+  ChangeBannerInterval,
+  ChangeBannerIntervalKey,
+  ChangeSalahInterval,
+  ChangeSalahIntervalKey,
+} from '../constants/app.const';
 @Injectable({
   providedIn: 'root',
 })
@@ -68,5 +74,14 @@ export class TimingsService {
     const currentDate = date ? date : new Date();
 
     return this.datePipe.transform(currentDate, 'E, MMMM dd, YYYY');
+  }
+
+  saveSalahIntervalToLocalStorage(time: number) {
+    localStorage.setItem(ChangeSalahIntervalKey, JSON.stringify(time));
+  }
+
+  getSalahIntervalFromLocalStorage(): number {
+    const storedValue = localStorage.getItem(ChangeSalahIntervalKey);
+    return storedValue ? JSON.parse(storedValue) : ChangeSalahInterval;
   }
 }

@@ -7,6 +7,7 @@ import { filter, first, Subject, takeUntil } from 'rxjs';
 import { IBannersResponse } from '../../interfaces/IBannersResponse.interface';
 import { BannerService } from '../../services/banner.service';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'banner-list',
@@ -23,9 +24,12 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
   styleUrl: './banner-list.component.scss',
 })
 export class BannerListComponent {
-  bannerList: IBannersResponse;
+  bannerList: IBannersResponse | null;
   _unsubscribeAll: Subject<void>;
-  constructor(private bannerService: BannerService) {
+  constructor(
+    private bannerService: BannerService,
+    private _snackBar: MatSnackBar
+  ) {
     this._unsubscribeAll = new Subject();
   }
 
@@ -61,6 +65,9 @@ export class BannerListComponent {
       .deleteFile(event)
       .pipe(first())
       .subscribe((res) => {
+        this._snackBar.open('File Deleted', '', {
+          duration: 4 * 1000,
+        });
         this.loadBanners();
       });
   }
@@ -68,6 +75,5 @@ export class BannerListComponent {
   ngOnDestroy() {
     this._unsubscribeAll.next();
     this._unsubscribeAll.unsubscribe();
-    this._unsubscribeAll.complete();
   }
 }

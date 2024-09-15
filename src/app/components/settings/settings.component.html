@@ -2,5 +2,42 @@
   *ngIf="isLoading$ | async"
   mode="indeterminate"
 ></mat-progress-bar>
+<div class="flex flex-row mt-10">
+  <div class="m-4">
+    <button
+      mat-icon-button
+      (click)="gotoHome()"
+    >
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+  </div>
+
+  <div class="flex flex-row justify-center items-center gap-4 w-full mt-10">
+    <div class="mb-4">Banner Slide Interval</div>
+    <div>
+      <mat-form-field appearance="outline">
+        <input matInput type="number" [formControl]="bannerSlideInterval" />
+        <span matTextSuffix>seconds</span>
+      </mat-form-field>
+    </div>
+
+    <div class="mb-4">Salah Times Slide Interval</div>
+    <div>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          placeholder="Placeholder"
+          [formControl]="salahTimeChangeInterval"
+        />
+        <span matTextSuffix>seconds</span>
+      </mat-form-field>
+    </div>
+
+    <div class="mb-4">
+      <button mat-flat-button (click)="saveTimeSettings()">Save Times</button>
+    </div>
+  </div>
+</div>
+
 <banner-upload />
 <banner-list />

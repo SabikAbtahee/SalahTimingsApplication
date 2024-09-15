@@ -7,6 +7,7 @@ import { first } from 'rxjs';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'banner-upload',
   templateUrl: './banner-upload.component.html',
@@ -27,7 +28,10 @@ export class BannerUploadComponent {
   uploadMessage: string = '';
   isUploading: boolean = false;
   @ViewChild('fileInput') fileInput!: ElementRef;
-  constructor(private bannerService: BannerService) {}
+  constructor(
+    private bannerService: BannerService,
+    private _snackBar: MatSnackBar
+  ) {}
 
   onFileSelected(event: any): void {
     this.selectedFile = event.target.files[0] as File;
@@ -43,6 +47,9 @@ export class BannerUploadComponent {
           next: (event) => {
             this.uploadMessage = 'File uploaded successfully!';
             this.bannerService.fileUploaded.next(true);
+            this._snackBar.open('File uploaded successfully!', '', {
+              duration: 4 * 1000,
+            });
           },
           error: (error) => {
             this.uploadMessage = 'Error uploading file.';

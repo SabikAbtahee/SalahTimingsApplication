@@ -5,10 +5,31 @@
   </div>
 
   }@else {
+  <div *ngIf="!isLocked" class="lock-icon right-2/3 max-sm:right-2/4">
+    <button mat-icon-button (click)="lockInterval()">
+      <mat-icon>lock_open</mat-icon>
+    </button>
+  </div>
+  <div *ngIf="isLocked" class="lock-icon max-sm:right-2/4">
+    <button mat-icon-button (click)="unlockInterval()">
+      <mat-icon>lock</mat-icon>
+    </button>
+  </div>
+  <div class="back-icon">
+    <button mat-icon-button (click)="slideBack()">
+      <mat-icon>arrow_back_ios</mat-icon>
+    </button>
+  </div>
   <img
     [ngClass]="{ 'skeleton-loader': !currentAnnouncementImagePath }"
     class="w-full object-contain"
     [src]="currentAnnouncementImagePath"
   />
+  <div class="front-icon right-1/3 max-sm:right-0">
+    <button mat-icon-button (click)="slideFront()">
+      <mat-icon>arrow_forward_ios</mat-icon>
+    </button>
+  </div>
+
   }
 </div>

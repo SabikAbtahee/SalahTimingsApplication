@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '@env';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { IBannersResponse } from '../interfaces/IBannersResponse.interface';
-import { BannerKey } from '../constants/app.const';
+import { BannerKey, ChangeBannerInterval, ChangeBannerIntervalKey } from '../constants/app.const';
 
 @Injectable({
   providedIn: 'root',
@@ -52,5 +52,14 @@ export class BannerService {
   getBannersFromLocalStorage(): IBannersResponse {
     const storedValue = localStorage.getItem(BannerKey);
     return storedValue ? JSON.parse(storedValue) : [];
+  }
+    
+  saveBannerIntervalToLocalStorage(time: number) {
+    localStorage.setItem(ChangeBannerIntervalKey, JSON.stringify(time));
+  }
+
+  getBannerIntervalFromLocalStorage(): number {
+    const storedValue = localStorage.getItem(ChangeBannerIntervalKey);
+    return storedValue ? JSON.parse(storedValue) : ChangeBannerInterval;
   }
 }

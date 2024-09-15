@@ -44,7 +44,7 @@ export class SalahTimingsComponent {
   changeScenes() {
     setInterval(() => {
       this.changeScene = !this.changeScene;
-    }, ChangeSalahInterval);
+    }, this.timingsService.getSalahIntervalFromLocalStorage());
   }
 
   refreshSalahTime() {

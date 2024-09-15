@@ -1,22 +1,31 @@
-import { Component } from '@angular/core';
-import { first, tap } from 'rxjs';
-import { BannerService } from '../../services/banner.service';
-import { IBannersResponse } from '../../interfaces/IBannersResponse.interface';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { Component } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { ChangeBannerInterval } from '../../constants/app.const';
+import { first, tap } from 'rxjs';
+import { IBannersResponse } from '../../interfaces/IBannersResponse.interface';
+import { BannerService } from '../../services/banner.service';
 
 @Component({
   selector: 'banner-slider',
   templateUrl: './banner-slider.component.html',
   styleUrl: './banner-slider.component.scss',
-  imports: [NgOptimizedImage, CommonModule, MatProgressSpinnerModule],
+  imports: [
+    NgOptimizedImage,
+    CommonModule,
+    MatProgressSpinnerModule,
+    MatIconModule,
+    MatButtonModule,
+  ],
   standalone: true,
 })
 export class BannerSliderComponent {
   banners: IBannersResponse;
   currentAnnouncementImagePath: string = '';
   currentIndex: number = 0;
+  currentInterval;
+  isLocked: boolean = false;
   constructor(private bannerService: BannerService) {}
   ngOnInit() {
     this.setBanners();
@@ -41,16 +50,43 @@ export class BannerSliderComponent {
   }
 
   toggleBanners() {
-    setInterval(() => {
-      this.viewBanners();
-    }, ChangeBannerInterval);
+    this.currentInterval = setInterval(() => {
+      this.slideFront();
+    }, this.bannerService.getBannerIntervalFromLocalStorage());
+  }
+
+  lockInterval() {
+    if (this.currentInterval && !this.isLocked) {
+      clearInterval(this.currentInterval);
+      this.isLocked = true;
+    }
+  }
+
+  unlockInterval() {
+    if (this.isLocked) {
+      this.toggleBanners();
+      this.isLocked = false;
+    }
   }
 
   viewBanners() {
     if (this.banners?.banners?.length > 0) {
       const values = this.banners?.banners;
       this.currentAnnouncementImagePath = values[this.currentIndex].url;
-      this.currentIndex = (this.currentIndex + 1) % values.length;
+      //   this.currentIndex = (this.currentIndex + 1) % values.length;
     }
+  }
+
+  slideBack() {
+    const lengthOfBanners = this.banners?.banners?.length;
+    this.currentIndex =
+      this.currentIndex - 1 < 0 ? lengthOfBanners - 1 : this.currentIndex - 1;
+    this.viewBanners();
+  }
+
+  slideFront() {
+    const lengthOfBanners = this.banners?.banners?.length;
+    this.currentIndex = (this.currentIndex + 1) % lengthOfBanners;
+    this.viewBanners();
   }
 }
