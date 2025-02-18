@@ -47,7 +47,7 @@ export class TimingsService {
             let hijriDate = toHijri(
               currentDate.getFullYear(),
               currentDate.getMonth() + 1,
-              currentDate.getDate(),
+              currentDate.getDate() + 1,
             );
 
             // If the current time is after sunset, add one day to the Hijri date
@@ -55,7 +55,7 @@ export class TimingsService {
               hijriDate = toHijri(
                 currentDate.getFullYear(),
                 currentDate.getMonth() + 1,
-                currentDate.getDate() + 1,
+                currentDate.getDate() + 2,
               );
             }
             const month = IslamicMonths[hijriDate.hm];
