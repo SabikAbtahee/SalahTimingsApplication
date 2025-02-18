@@ -1,28 +1,29 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { environment } from '@env';
-import { Observable } from 'rxjs';
-import * as SunCalc from 'suncalc';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { environment } from "@env";
+import { Observable } from "rxjs";
+import * as SunCalc from "suncalc";
 
-import { toHijri, toGregorian } from 'hijri-converter';
-import { DatePipe } from '@angular/common';
-import { IPrayerTimings } from '../interfaces/IPrayerTimings.interface';
-import { IslamicMonths } from '../constants/IslamicMonthTexts.const';
+import { toGregorian, toHijri } from "hijri-converter";
+import { DatePipe } from "@angular/common";
+import { IPrayerTimings } from "../interfaces/IPrayerTimings.interface";
+import { IslamicMonths } from "../constants/IslamicMonthTexts.const";
 import {
   ChangeBannerInterval,
   ChangeBannerIntervalKey,
   ChangeSalahInterval,
   ChangeSalahIntervalKey,
-} from '../constants/app.const';
+} from "../constants/app.const";
+
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class TimingsService {
   constructor(private httpClient: HttpClient, private datePipe: DatePipe) {}
 
   getTimings(): Observable<IPrayerTimings> {
     return this.httpClient.get(
-      environment.SalahTimesService + '/timings'
+      environment.SalahTimesService + "/timings",
     ) as Observable<IPrayerTimings>;
   }
 
@@ -39,33 +40,33 @@ export class TimingsService {
             let sunset = SunCalc.getTimes(
               currentDate,
               latitude,
-              longitude
+              longitude,
             ).sunset;
 
             // Convert to Hijri
             let hijriDate = toHijri(
               currentDate.getFullYear(),
               currentDate.getMonth() + 1,
-              currentDate.getDate()
+              currentDate.getDate(),
             );
 
             // If the current time is after sunset, add one day to the Hijri date
-            if (currentDate > sunset) {
-              hijriDate = toHijri(
-                currentDate.getFullYear(),
-                currentDate.getMonth() + 1,
-                currentDate.getDate() + 1
-              );
-            }
+            // if (currentDate > sunset) {
+            //   hijriDate = toHijri(
+            //     currentDate.getFullYear(),
+            //     currentDate.getMonth() + 1,
+            //     currentDate.getDate() + 1
+            //   );
+            // }
             const month = IslamicMonths[hijriDate.hm];
             resolve(`${month} ${hijriDate.hd}, ${hijriDate.hy}`);
           },
           (error) => {
             reject(error);
-          }
+          },
         );
       } else {
-        reject('Geolocation is not supported by this browser.');
+        reject("Geolocation is not supported by this browser.");
       }
     });
   }
@@ -73,7 +74,7 @@ export class TimingsService {
   getEnglishDate(date?: Date): string | null {
     const currentDate = date ? date : new Date();
 
-    return this.datePipe.transform(currentDate, 'E, MMMM dd, YYYY');
+    return this.datePipe.transform(currentDate, "E, MMMM dd, YYYY");
   }
 
   saveSalahIntervalToLocalStorage(time: number) {
