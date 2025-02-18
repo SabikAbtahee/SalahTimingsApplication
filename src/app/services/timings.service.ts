@@ -51,13 +51,13 @@ export class TimingsService {
             );
 
             // If the current time is after sunset, add one day to the Hijri date
-            // if (currentDate > sunset) {
-            //   hijriDate = toHijri(
-            //     currentDate.getFullYear(),
-            //     currentDate.getMonth() + 1,
-            //     currentDate.getDate() + 1
-            //   );
-            // }
+            if (currentDate > sunset) {
+              hijriDate = toHijri(
+                currentDate.getFullYear(),
+                currentDate.getMonth() + 1,
+                currentDate.getDate() + 1,
+              );
+            }
             const month = IslamicMonths[hijriDate.hm];
             resolve(`${month} ${hijriDate.hd}, ${hijriDate.hy}`);
           },
