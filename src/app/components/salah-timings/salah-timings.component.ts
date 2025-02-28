@@ -1,21 +1,22 @@
-import { Component } from '@angular/core';
-import { fuseAnimations } from '../../animations/animations';
-import { TimingsService } from '../../services/timings.service';
-import { first } from 'rxjs';
-import { TimerCardComponent } from '../timer-card/timer-card.component';
-import { IPrayerTimings } from '../../interfaces/IPrayerTimings.interface';
-import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
-import { ChangeSalahInterval } from '../../constants/app.const';
+import { Component } from "@angular/core";
+import { fuseAnimations } from "../../animations/animations";
+import { TimingsService } from "../../services/timings.service";
+import { first } from "rxjs";
+import { TimerCardComponent } from "../timer-card/timer-card.component";
+import { IPrayerTimings } from "../../interfaces/IPrayerTimings.interface";
+import { NgxSkeletonLoaderModule } from "ngx-skeleton-loader";
+import { ChangeSalahInterval } from "../../constants/app.const";
+
 @Component({
-  selector: 'salah-timings',
-  templateUrl: './salah-timings.component.html',
+  selector: "salah-timings",
+  templateUrl: "./salah-timings.component.html",
   animations: fuseAnimations,
   standalone: true,
   imports: [TimerCardComponent, NgxSkeletonLoaderModule],
-  styleUrl: './salah-timings.component.scss',
+  styleUrl: "./salah-timings.component.scss",
 })
 export class SalahTimingsComponent {
-  salahTimings!: Array<{ key: string; value: string }>;
+  salahTimings!: Array<{ key: string; value: string }> | null;
   jummahTimings!: Array<{ key: string; value: string }>;
   changeScene: boolean = false;
   constructor(private timingsService: TimingsService) {}

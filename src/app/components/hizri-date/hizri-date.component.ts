@@ -1,15 +1,15 @@
-import { Component } from '@angular/core';
-import { map, Observable, tap, timer } from 'rxjs';
-import { TimingsService } from '../../services/timings.service';
-import { CommonModule, DatePipe } from '@angular/common';
+import { Component } from "@angular/core";
+import { map, Observable, tap, timer } from "rxjs";
+import { TimingsService } from "../../services/timings.service";
+import { CommonModule, DatePipe } from "@angular/common";
 import {
   NgxSkeletonLoaderComponent,
   NgxSkeletonLoaderModule,
-} from 'ngx-skeleton-loader';
+} from "ngx-skeleton-loader";
 
 @Component({
-  selector: 'hizri-date',
-  templateUrl: './hizri-date.component.html',
+  selector: "hizri-date",
+  templateUrl: "./hizri-date.component.html",
   standalone: true,
   imports: [CommonModule, DatePipe, NgxSkeletonLoaderModule],
 })
@@ -26,9 +26,10 @@ export class HizriDateComponent {
   }
   setDate() {
     this.englishDate = this.timingsService.getEnglishDate();
-    this.timingsService.getHizriDate().then((res) => {
-      this.hizriDate = res;
-    });
+    // this.timingsService.getHizriDate().then((res) => {
+    //   this.hizriDate = res;
+    // });
+    this.hizriDate = this.timingsService.writeIslamicDate(-1);
   }
 
   setClock() {
@@ -38,7 +39,7 @@ export class HizriDateComponent {
           this.setDate();
         }
       }),
-      map(() => new Date())
+      map(() => new Date()),
     );
   }
 }

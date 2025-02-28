@@ -5,7 +5,7 @@
     <div class="flex items-center justify-center h-36">
       <mat-spinner [diameter]="50"></mat-spinner>
     </div>
-    } 
+    }
     @for(i of calendarEventsDates | slice:0:7; track $index){
     <calendar-event-card [calendarEvents]="calendarEvents[i]" [date]="i" />
     }
