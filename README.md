@@ -1,5 +1,7 @@
 # SalahTimings
 
+# Website link: https://ialfm-fzbgfrbwh4eueqfu.centralus-01.azurewebsites.net/home
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.3.
 
 ## Development server

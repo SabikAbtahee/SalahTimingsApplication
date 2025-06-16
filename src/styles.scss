@@ -4,63 +4,58 @@
 
 @import url("./styles/colors.scss");
 
+:root {
+  --mdc-filled-button-label-text-font: Gantari;
+  --mdc-protected-button-label-text-font: Gantari;
+  --mat-form-field-container-text-font: Gantari;
+}
 body {
   margin: 0px;
+  background: url("assets/background.jpg") no-repeat center center fixed;
+  background-size: cover;
 }
 html,
 body {
   height: 100%;
 }
+
+@font-face {
+  font-family: Gantari;
+  src: url("assets/Gantari/Gantari-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900; /* Variable font weight range */
+  font-style: normal;
+}
+
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Gantari, sans-serif;
+  font-weight: 500;
+  font-style: normal;
 }
 
-@font-face {
-	font-family: 'Symphony';
-	src: url('assets/symphony-cg-bold.otf') format('opentype');
-	font-weight: normal;
-	font-style: normal;
+button {
+  font-family: inherit;
 }
 
-@font-face {
-	font-family: 'calibri';
-	src: url('assets/calibri/calibri-bold.eot?#iefix');
-	src: url('assets/calibri/calibri-bold.eot?#iefix')
-			format('eot'),
-		url('assets/calibri/calibri-bold.woff') format('woff'),
-		url('assets/calibri/calibri-bold.woff2') format('woff2'),
-		url('assets/calibri/calibri-bold.ttf') format('truetype'),
-		url('assets/calibri/calibri-bold.svg')
-			format('svg');
+.custom-height {
+  height: calc(100vh - 202px);
 }
 
-
-
-.symphony{
-  font-family: 'calibri';
-}
-
-.custom-height{
-    height: calc(100vh - 202px);
+@keyframes skeleton-loading {
+  0% {
+    background-color: #e0e0e0;
   }
-  
-  @keyframes skeleton-loading {
-    0% {
-      background-color: #e0e0e0;
-    }
-    50% {
-      background-color: #f0f0f0;
-    }
-    100% {
-      background-color: #e0e0e0;
-    }
+  50% {
+    background-color: #f0f0f0;
   }
-  
-  .skeleton-loader {
-    background: #e0e0e0;
-    color: #e0e0e0;
-    border-radius: 4px;
-    animation: skeleton-loading 1.5s infinite ease-in-out;
+  100% {
+    background-color: #e0e0e0;
   }
-  
+}
+
+.skeleton-loader {
+  background: #e0e0e0;
+  color: #e0e0e0;
+  border-radius: 4px;
+  animation: skeleton-loading 1.5s infinite ease-in-out;
+}

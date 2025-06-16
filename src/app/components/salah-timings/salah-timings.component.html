@@ -1,24 +1,26 @@
 <div class="flex flex-col gap-4 w-full items-center justify-center">
   <div class="flex flex-row justify-evenly w-full items-center">
-    @if(changeScene){ @for (item of salahTimings; track $index) {
-    <div>
-      <timer-card [text]="item.key" [time]="item.value" />
-    </div>
-    } }
+    @if (changeScene) {
+      @for (item of salahTimings; track $index) {
+        <div>
+          <timer-card [text]="item.key" [time]="item.value" />
+        </div>
+      }}
   </div>
 
   <div class="flex flex-row justify-evenly w-full items-center">
-    @if(!changeScene){ @for (item of jummahTimings; track $index) {
-    <div>
-      <timer-card [text]="item.key" [time]="item.value" />
+    @if (!changeScene) {
+      @for (item of jummahTimings; track $index) {
+        <div>
+          <timer-card [text]="item.key" [time]="item.value" />
+        </div>
+      }}
+  </div>
+  @if (!salahTimings?.length) {
+    <div class="flex flex-row justify-evenly w-full items-center">
+      @for (item of [1, 1, 1, 1, 1]; track $index) {
+        <ngx-skeleton-loader [theme]='{ height: "2vw", width: "10vw" }' />
+      }
     </div>
-    } }
-  </div>
-  @if(!salahTimings?.length){
-  <div class="flex flex-row justify-evenly w-full items-center">
-    @for(item of [1,1,1,1,1]; track $index){
-    <ngx-skeleton-loader [theme]="{ height: '88px', width: '250px' }" />
-    }
-  </div>
   }
 </div>
