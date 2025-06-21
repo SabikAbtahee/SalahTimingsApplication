@@ -1,3 +1,3 @@
 export const environment = {
-  SalahTimesService: 'http://localhost:3000',
+  SalahTimesService: 'https://salahtimesservice-hqd9bdahckbnf8av.eastus-01.azurewebsites.net',
 };

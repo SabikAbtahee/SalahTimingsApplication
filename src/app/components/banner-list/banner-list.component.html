@@ -1,11 +1,11 @@
-@if(!bannerList?.banners?.length){
+@if(!bannerList?.banners?.length && !isLoaded){
 <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 }
 <div class="flex flex-row flex-wrap gap-5 p-12">
   <div *ngFor="let item of bannerList?.banners; trackBy: trackByName">
     <div class="justify-center mat-elevation-z1 cursor-pointer item-container">
       <button
-        mat-icon-button
+        mat-button
         class="delete-icon text-red-500"
         (click)="deleteItem(item.name)"
       >
@@ -23,3 +23,14 @@
     </div>
   </div>
 </div>
+@if(isLoaded && !bannerList?.banners?.length){
+<div class="flex flex-row justify-center items-center">
+    <div class="empty-gallery justify-center items-center">
+        <div class="flex flex-row justify-center items-center">
+        <img  src="https://cdn-icons-png.flaticon.com/512/4076/4076549.png" alt="No Images">
+        </div>
+        <h2>No Images Yet</h2>
+        <p>Upload images using the upload icon above to upload images</p>
+    </div>
+    </div>
+}

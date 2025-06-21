@@ -1,10 +1,11 @@
 <div class="flex justify-center custom-height">
-  @if(!currentAnnouncementImagePath){
+  <!-- @if(!currentAnnouncementImagePath){
   <div class="flex justify-center items-center custom-height">
     <mat-spinner></mat-spinner>
   </div>
 
-  }@else {
+  } -->
+  @if(!emptyImage){
   <div *ngIf="!isLocked" class="lock-icon right-2/3 max-sm:right-2/4">
     <button mat-icon-button (click)="lockInterval()">
       <mat-icon>lock_open</mat-icon>
@@ -31,5 +32,8 @@
     </button>
   </div>
 
+  }
+  @if(emptyImage){
+    
   }
 </div>

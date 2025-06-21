@@ -1,17 +1,22 @@
 <div class="p-4">
   <input type="file" #fileInput (change)="onFileSelected($event)" hidden />
   <div class="flex flex-row items-center justify-center gap-4">
+    
+
     <button
-      mat-icon-button
-      class="flex flex-col items-center justify-center"
-      (click)="selectFile()"
-    >
-      <span class="material-symbols-outlined"> download </span>
-    </button>
-    <button mat-raised-button (click)="uploadFile()" [disabled]="!selectedFile">
+  mat-raised-button
+  class="flex items-center space-x-2 text-red-500"
+  (click)="selectFile()"
+>
+  <mat-icon class="  text-red-500 material-symbols-outlined upload-button">download</mat-icon>
+  <span class="text-red-500">Upload</span>
+</button>
+    <!-- <button mat-raised-button  class="f" (click)="uploadFile()" [disabled]="!selectedFile">
+      <span class="material-symbols-outlined text-red-500"> download </span>
+
       Upload
-    </button>
-    <div *ngIf="selectedFile">
+    </button> -->
+    <!-- <div *ngIf="selectedFile">
       <div class="flex flex-col items-center justify-center">
         <span
           matTooltip="Click Upload to upload selected file"
@@ -20,7 +25,7 @@
           arrow_back
         </span>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>
 @if(isUploading){

@@ -25,6 +25,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class BannerListComponent {
   bannerList: IBannersResponse | null;
+  isLoaded=false;
   _unsubscribeAll: Subject<void>;
   constructor(
     private bannerService: BannerService,
@@ -47,6 +48,7 @@ export class BannerListComponent {
       .pipe(first())
       .subscribe((res) => {
         this.bannerList = res;
+        this.isLoaded = true;
       });
   }
 

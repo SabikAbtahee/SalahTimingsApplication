@@ -23,6 +23,7 @@ import { BannerService } from '../../services/banner.service';
 export class BannerSliderComponent {
   banners: IBannersResponse;
   currentAnnouncementImagePath: string = '';
+  emptyImage: boolean = false;
   currentIndex: number = 0;
   currentInterval;
   isLocked: boolean = false;
@@ -74,6 +75,11 @@ export class BannerSliderComponent {
       const values = this.banners?.banners;
       this.currentAnnouncementImagePath = values[this.currentIndex].url;
       //   this.currentIndex = (this.currentIndex + 1) % values.length;
+this.emptyImage = false;
+
+    }
+    else{
+this.emptyImage = true;
     }
   }
 
